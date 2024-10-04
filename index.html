@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contador Regressivo</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #282c34;
+        color: white;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+
+      .countdown {
+        display: flex;
+        justify-content: space-around;
+        font-size: 24px;
+        background-color: #3b3f44;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .time-box {
+        margin: 0 15px;
+      }
+
+      .time-box span {
+        display: block;
+        font-size: 48px;
+      }
+
+      .label {
+        font-size: 14px;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Countdown para o fim do suporte ao Windows 10</h1>
+      <div class="countdown">
+        <div class="time-box">
+          <span id="days"></span>
+          <div class="label">Dias</div>
+        </div>
+        <div class="time-box">
+          <span id="hours"></span>
+          <div class="label">Horas</div>
+        </div>
+        <div class="time-box">
+          <span id="minutes"></span>
+          <div class="label">Minutos</div>
+        </div>
+        <div class="time-box">
+          <span id="seconds"></span>
+          <div class="label">Segundos</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Definir a data de fim do suporte ao Windows 10
+      const endDate = new Date("October 14, 2025 00:00:00").getTime();
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const timeLeft = endDate - now;
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = days;
+        document.getElementById("hours").innerText = hours;
+        document.getElementById("minutes").innerText = minutes;
+        document.getElementById("seconds").innerText = seconds;
+
+        // Atualizar a cada segundo
+        setTimeout(updateCountdown, 1000);
+      }
+
+      updateCountdown();
+    </script>
+  </body>
+</html>
